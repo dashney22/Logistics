@@ -1,0 +1,21 @@
+{% extends 'activities/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Register your Account</h1>
+<hr>
+ <div class ="form-group">
+
+   <form method="POST">
+      {% csrf_token%}
+      {{form.as_p}}
+      <button class="btn btn-success">Register</button>
+   </form>
+   
+ </div>
+ <br> if you already have an account, click <a href="{% url 'login' %}">here </a>to login
+ <hr>
+ <a class="btn btn-outline-info" href="{% url 'home'%}">Back</a>
+
+{% endblock %}

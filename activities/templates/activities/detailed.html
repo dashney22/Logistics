@@ -1,0 +1,44 @@
+{% extends 'activities/base.html'%}
+{% load static %}
+
+{%block content%}
+
+    <h1>{{post.title}}</h1>
+    <small>By: {{post.author.first_name}} {{post.author.last_name}}</small> - 
+    {{post.post_date}}
+    <hr>
+    <h4>{{post.body}}</h4>
+    <a class="btn btn-info"href="{% url 'update-post' post.pk %}">Update</a>
+    <a class="btn btn-danger"href="{% url 'delete-post' post.pk %}">Delete</a>
+    <a href="{%url 'share-thoughts'%}" class="btn btn-secondary">Back</a>
+    <br><br>
+    <h2> Comments..</h2>
+    {% if not post.comments.all %}
+        No Comments Yet.... <a href="{%url 'add-comment'%}">Add Comment</a>
+    {% else %}
+        {% for comment in post.comments.all %}
+            <strong>
+                {{comment.name}} -
+                {{comment.date_added}}
+            </strong>
+            {{comment.body}}
+        {% endfor%}
+    {% endif %}
+    <hr>
+
+    <form action="{% url 'like-post' post.pk %}" method="POST">
+        {% csrf_token%}
+
+        {% if liked%}
+            <button type="submit", name="post_id", value="{{post.id}}",
+            class="btn btn-danger btn-sm">Unlike</button>
+        {% else %}
+            <button type="submit", name="post_id", value="{{post.id}}",
+            class="btn btn-primary btn-sm">Like</button>
+        {% endif%}
+             
+         
+         - {{total_likes}} likes 
+    </form>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'activities/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container py-5">
+    <h1>Login</h1>
+    <div class ="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+
+            <button class="btn btn-primary" type="submit">Login</button>
+         </form>
+    </div>
+    
+ </div>
+ <br> if you do not have an account, click <a href="{% url 'register' %}">here </a>to register first
+ <hr>
+ <a class="btn btn-outline-info" href="{% url 'register'%}">Back</a>
+
+    </form>
+</div>
+
+
+{% endblock %}

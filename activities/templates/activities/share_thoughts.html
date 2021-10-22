@@ -1,0 +1,37 @@
+{% extends 'activities/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<br/><br/>
+<div class="text-center mx-auto">
+    <div class="container">
+        <div call="row">
+            <div class="col-sm">
+                <a href="{%url 'add-post' %}"> Add Post</a>
+            </div>
+            <div class="col-sm">
+                <h2>Posts</h2>
+            </div>
+        </div>
+    </div>
+    
+ <hr>
+ <ul>
+    {% for post in object_list %} 
+     <li>
+        <h3><a href="{% url 'post-detail' post.pk %}">{{post.title}}</a>
+        
+        </h3> 
+        <h4> By: {{post.author}} </h4>
+        <small><a href="{% url 'category' post.category %}">{{post.category}}</a></small>
+    </li>
+    <hr>
+    
+   {% endfor %}
+ </ul>
+</div>
+ 
+ 
+
+{% endblock %}

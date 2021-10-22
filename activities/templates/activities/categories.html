@@ -1,0 +1,40 @@
+{% extends 'activities/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<br/><br/>
+<div class="text-center mx-auto">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+            {% if category_post %}    
+                <center><h1>{{cats}}</h1></center>
+                <hr>
+                    <ul>
+                        {% for post in category_post %} 
+                         <li>
+                            <h3><a href="{% url 'post-detail' post.pk %}">{{post.title}}</a></h3> 
+                            <small> Date Created : {{post.post_date}}</small>
+                        </li>
+                        <hr>
+                        
+                       {% endfor %}
+                </ul>
+                <button class="btn btn-primary btn-dark"> <a href="{%url 'share-thoughts'%}">Back</a></button>
+                <button class="btn btn-secondary"> <a href="{%url 'add-category'%}">Add Category</a></button>
+            {%else%}
+                <h3>Sorry Catogory Does not exist or has Zero Posts</h3>
+                <button class="btn btn-info"> <a href="{%url 'share-thoughts'%}">Back</a></button>
+                <button class="btn btn-secondary"> <a href="{%url 'add-category'%}">Add Category</a></button>
+            {% endif%}    
+            </div>
+        </div>
+            
+    </div>
+
+</div>
+ 
+ 
+
+{% endblock %}

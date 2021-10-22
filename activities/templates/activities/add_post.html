@@ -1,0 +1,26 @@
+{% extends 'activities/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1>Add Post</h1>
+<hr>
+ <div class ="form-group">
+
+   <form method="POST">
+      {% csrf_token%}
+      {{form.as_p}}
+      <button class="btn btn-success">Post</button>
+   </form>
+   <script>
+
+     var name = "{{user.id}}";
+     document.getElementById("sender").placeholder= name;
+   </script>
+
+ </div>
+ 
+ <hr>
+ <a class="btn btn-outline-info" href="{% url 'share-thoughts'%}">Back</a>
+
+{% endblock %}
